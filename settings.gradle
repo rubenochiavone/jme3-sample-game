@@ -1,0 +1,3 @@
+rootProject.name = 'jme3-sample-game'
+
+include 'assets'

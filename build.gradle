@@ -1,0 +1,46 @@
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building an application
+    id 'application'
+}
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+project(":assets") {
+    apply plugin: "java"
+    
+    buildDir = rootProject.file("build/assets")
+    
+    sourceSets {
+        main {
+            resources {
+                srcDir '.'
+            }
+        }
+    }    
+}
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    implementation 'com.google.guava:guava:26.0-jre'
+
+    // jMonkeyEngine libraries
+    implementation "org.jmonkeyengine:jme3-core:3.2.2-stable"
+    implementation "org.jmonkeyengine:jme3-desktop:3.2.2-stable"
+    implementation "org.jmonkeyengine:jme3-lwjgl:3.2.2-stable"
+
+    // Assets
+    runtime project(':assets')
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+// Define the main class for the application
+mainClassName = 'jme3.sample.game.App'
